@@ -13,6 +13,10 @@ for dirpath, dirname, filenames in os.walk(start_path):
                     hexa_code, [])+[os.path.abspath(fp)]
             except:
                 pass
+stats = False
 for value in duplicates.values():
     if len(value) > 1:
+        stats = True
         print(value)
+if not stats:
+    print("No duplicates found")
