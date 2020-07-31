@@ -1,6 +1,6 @@
 import os
 from hashlib import md5
-start_path = r"E:\VIT\Virtual Semester"
+start_path = r"#Enter the starting directory"
 duplicates = dict()
 for dirpath, dirname, filenames in os.walk(start_path):
     for f in filenames:
