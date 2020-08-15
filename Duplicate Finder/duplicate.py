@@ -26,6 +26,7 @@ for dirpath, dirname, filenames in os.walk(start_path):
         t = Thread(target=checker, args=(dirpath, duplicates, f))
         t.start()
         #checker(dirpath, duplicates, f)
+        t.join()
 
 stats = False
 for value in list(duplicates):
