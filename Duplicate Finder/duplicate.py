@@ -3,12 +3,9 @@ from hashlib import md5
 from threading import Thread
 import threading
 import time
-
 c1 = time.time()
-
-
+in_t = threading.active_count()
 def checker(duplicates, file_name):
-
     if os.path.isfile(file_name):
         try:
             fi = open(fp, 'rb')
@@ -19,7 +16,7 @@ def checker(duplicates, file_name):
             pass
 
 
-start_path = r"E:\VIT\Semester 5"
+start_path = r"E:\VIT"
 duplicates = dict()
 
 for dirpath, dirname, filenames in os.walk(start_path):
@@ -27,14 +24,16 @@ for dirpath, dirname, filenames in os.walk(start_path):
         fp = os.path.join(dirpath, f)
         t = Thread(target=checker, args=(duplicates, fp))
         t.start()
+        time.sleep(.01)
 
-
-stats = False
-for value in list(duplicates):
-    if len(duplicates[value]) > 1:
-        stats = True
-        print(duplicates[value])
-
-if not stats:
-    print("No duplicates found")
-print(time.time()-c1)
+while(True):
+    if threading.active_count() <= in_t:
+        stats = False
+        for value in list(duplicates):
+            if len(duplicates[value]) > 1:
+                stats = True
+                print(duplicates[value])
+        if not stats:
+            print("No duplicates found")
+        print(time.time()-c1)
+        break
