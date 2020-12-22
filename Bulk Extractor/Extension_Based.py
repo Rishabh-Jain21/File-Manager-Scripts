@@ -9,7 +9,8 @@ extensions = {
     'Document': ['.doc', '.dot', '.odt', '.sxw', '.rtf', '.pdf', '.txt'],
     'Images': ['.jpg', '.jpeg', '.jpe', '.gif', '.bmp', '.tif', '.tiff', '.png'],
     'Audio': ['.mp3', '.wma', '.ogg', '.au', '.aif', '.aiff', '.wav'],
-    'Video': ['.avi', '.mpg', '.mpeg', '.wmv', '.mov', '.divx', '.mp4', '.m4v', '.asf']
+    'Video': ['.avi', '.mpg', '.mpeg', '.wmv', '.mov', '.divx', '.mp4', '.m4v', '.asf'],
+    'User_choice': ['.py']
 }
 
 
@@ -29,7 +30,7 @@ def bulk_extractor(folder_path):
             if dirname != 'Extracted':
                 for f in filenames:
                     fp = os.path.join(dirpath, f)
-                    if os.path.isfile(fp) and (os.path.splitext(fp)[1] in extensions['Document']):
+                    if os.path.isfile(fp) and (os.path.splitext(fp)[1] in extensions['User_choice']):
                         try:
                             source = os.path.join(folder_path, fp)
                             destination = f_path
