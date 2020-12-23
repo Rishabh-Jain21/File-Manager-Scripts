@@ -1,14 +1,10 @@
 
 import os
 import shutil
+import argparse
 
 
-'''
-Put this python file in another directorty or result may cause problem
-'''
-
-
-def bulk_extractor(folder_path):
+def bulk_extractor(folder_path, f_name):
     """
     Move all files in all subfolders to a single folder
     """
@@ -16,7 +12,7 @@ def bulk_extractor(folder_path):
         print("folder path invalid")
     else:
         os.chdir(folder_path)
-        f_path = os.path.join(folder_path, "Extracted")
+        f_path = os.path.join(folder_path, f_name)
         if not os.path.exists(f_path):
             os.makedirs(f_path)
 
@@ -33,4 +29,10 @@ def bulk_extractor(folder_path):
                             pass
 
 
-bulk_extractor("#Enter file path")
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file', type=str, metavar='',
+                    required=True, help="Folder Path")
+parser.add_argument('-n', '--name', type=str, metavar='',
+                    required=True, help="Folder Name for extracted files")
+args = parser.parse_args()
+bulk_extractor(args.file, args.name)
